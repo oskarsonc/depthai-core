@@ -2,6 +2,7 @@
 
 #include <camera/CameraMetadata.h>
 
+#include <array>
 #include <cstdint>
 #include <optional>
 
@@ -18,5 +19,6 @@ class HalUtil {
     static bool getMetaU8(const camera_metadata_t* meta, uint32_t tag, uint8_t& value);
     static bool getMetaInt64(const camera_metadata_t* meta, uint32_t tag, int64_t& value);
     static bool getMetaInt32(const camera_metadata_t* meta, uint32_t tag, int32_t& value);
-    static bool getMetaSensorTemperature(const camera_metadata_t* meta, uint32_t tag, float& value);
+    /// The 2 bytes of the sensor readout tag (DAI_CAMERA_TAG_SENSOR_READOUT), in register order
+    static bool getMetaSensorReadOutput(const camera_metadata_t* meta, uint32_t tag, std::array<uint8_t, 2>& bytes);
 };
